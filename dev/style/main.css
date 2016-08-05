@@ -1,0 +1,136 @@
+*,
+:after,
+:before {
+    -webkit-tap-highlight-color: transparent
+}
+blockquote,
+body,
+dd,
+div,
+dl,
+dt,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+legend,
+li,
+ol,
+p,
+td,
+textarea,
+th,
+ul {
+    margin: 0;
+    padding: 0
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+fieldset,
+img {
+    border: 0
+}
+li {
+    list-style: none
+}
+caption,
+th {
+    text-align: left
+}
+q:after,
+q:before {
+    content: ""
+}
+input:password {
+    ime-mode: disabled
+}
+:focus {
+    outline: 0
+}
+/*html {font-size: 16px !important}
+
+html {
+    font-size : 20px;
+}*/
+@media only screen and (min-width: 401px){
+    html {
+        font-size: 25px !important;
+    }
+}
+@media only screen and (min-width: 428px){
+    html {
+        font-size: 26.75px !important;
+    }
+}
+@media only screen and (min-width: 481px){
+    html {
+        font-size: 30px !important; 
+    }
+}
+@media only screen and (min-width: 569px){
+    html {
+        font-size: 35px !important; 
+    }
+}
+@media only screen and (min-width: 641px){
+    html {
+        font-size: 40px !important; 
+    }
+}
+body{
+    background: url(../img/0.png) no-repeat #fff;
+    font-size: 0.875rem;
+    padding-top: 50%;
+    background-size:85% auto;
+    background-position: center .8rem;
+}
+.t-center { text-align: center;}
+.p-des{margin-bottom: .8rem; font-size:1rem}
+.btn {
+    height: 2.75rem;
+    line-height: 2.75rem;
+    background-color: #ffbd18;
+    border-radius: 5rem;
+    width: 60%;
+    border: 1px solid #000;
+    font-size: 0.875rem;
+}
+
+section {position: relative;}
+
+section .bd{
+    background: url(../img/1.png) no-repeat #fff;
+    width: 18rem;
+    height: 13.8rem;
+    margin:0 auto;
+    background-size: contain;
+}
+
+
+section header {
+    width: 100%;
+    text-align: center;
+    color: #FFBD18;
+    font-size: .85rem;
+}
+
+section header span{background-color: #fff; padding:0 .5rem;}
+.ui-center{
+    width: 100%;
+    text-align: center;
+}
+section header:before{
+    content: '';
+    width: 100%;
+    height: 1px;
+    border-top:1px dashed #666;
+    position: absolute;
+}
+

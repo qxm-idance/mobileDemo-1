@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link type="text/css" rel="stylesheet" href="style/main.css">
+	<!-- <meta name="flexible" content="initial-dpr=1,maximum-dpr=3" /> -->
+	<!-- <meta name="viewport" content="initial-dpr=1,maximum-dpr=3"/> -->
+	<script type="text/javascript" src="js/util/flexible.js"></script>
+	<script type="text/javascript">
+		var dpr, rem, scale;
+		var docEl = document.documentElement;
+		var fontEl = document.createElement('style');
+		var metaEl = document.querySelector('meta[name="viewport"]');
+
+		dpr = window.devicePixelRatio || 1;
+		console.log(dpr);
+		console.log(docEl.clientWidth);
+		rem = docEl.clientWidth * dpr / 10;
+		scale = 1 / dpr;
+
+
+		// 设置viewport，进行缩放，达到高清效果
+		metaEl.setAttribute('content', 'width=' + dpr * docEl.clientWidth + ',initial-scale=' + scale + ',maximum-scale=' + scale + ', minimum-scale=' + scale + ',user-scalable=no');
+
+		// 设置data-dpr属性，留作的css hack之用
+		docEl.setAttribute('data-dpr', dpr);
+
+		// 动态写入样式
+		docEl.firstElementChild.appendChild(fontEl);
+		fontEl.innerHTML = 'html{font-size:' + rem + 'px!important;}';
+
+		// 给js调用的，某一dpr下rem和px之间的转换函数
+		window.rem2px = function(v) {
+		    v = parseFloat(v);
+		    return v * rem;
+		};
+		window.px2rem = function(v) {
+		    v = parseFloat(v);
+		    return v / rem;
+		};
+
+		window.dpr = dpr;
+		window.rem = rem;
+	</script>
+</head>
+<body>
+	<div>
+		<p class="p-des t-center">用人品宝还款，首笔立减10元<br>还能抽取免单大奖哟</p>
+		<p class="p-des t-center"><button class="btn">马上还款</button></p>
+		<section>
+			<header class="ui-center"><span>活动期间人品宝还款后将自动参与抽奖</span></header>
+			<div class="bd">
+				<p>中奖名单</p>
+			</div>
+		</section>
+	</div>
+</body>
+</html>
