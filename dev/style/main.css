@@ -58,32 +58,13 @@ input:password {
 
 html {
     font-size : 20px;
-}*/
+}
 @media only screen and (min-width: 401px){
     html {
         font-size: 25px !important;
     }
 }
-@media only screen and (min-width: 428px){
-    html {
-        font-size: 26.75px !important;
-    }
-}
-@media only screen and (min-width: 481px){
-    html {
-        font-size: 30px !important; 
-    }
-}
-@media only screen and (min-width: 569px){
-    html {
-        font-size: 35px !important; 
-    }
-}
-@media only screen and (min-width: 641px){
-    html {
-        font-size: 40px !important; 
-    }
-}
+*/
 body{
     background: url(../img/0.png) no-repeat #fff;
     font-size: 0.875rem;
@@ -92,7 +73,11 @@ body{
     background-position: center .8rem;
 }
 .t-center { text-align: center;}
-.p-des{margin-bottom: .8rem; font-size:1rem}
+.p-des{
+    margin-bottom: .8rem; 
+    font-size:1rem;
+    line-height:1.5rem;
+}
 .btn {
     height: 2.75rem;
     line-height: 2.75rem;
@@ -102,35 +87,125 @@ body{
     border: 1px solid #000;
     font-size: 0.875rem;
 }
-
-section {position: relative;}
-
-section .bd{
-    background: url(../img/1.png) no-repeat #fff;
-    width: 18rem;
-    height: 13.8rem;
-    margin:0 auto;
-    background-size: contain;
+.ui-center {
+  margin-left: 50%;
+  width:100%;
+  text-align: center;
+  transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
 }
-
-
-section header {
-    width: 100%;
-    text-align: center;
-    color: #FFBD18;
-    font-size: .85rem;
+section {
+    position: relative;
+    margin-top: 1.5rem;
 }
-
-section header span{background-color: #fff; padding:0 .5rem;}
-.ui-center{
-    width: 100%;
-    text-align: center;
-}
-section header:before{
-    content: '';
+section:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: .5rem;
     width: 100%;
     height: 1px;
-    border-top:1px dashed #666;
-    position: absolute;
+    border-top: 1px dashed #666;
+    z-index: 20;
+}
+section header span {
+    background-color: #fff;
+    display: inline-block;
+    padding: 0 .5rem;
+}
+section header {
+    font-size: .85rem;
+    color: #FFBD18;
+    position: relative;;
+    top:0;
+    left:0;
+    z-index: 30;
+    margin-bottom: 1rem;
+}
+section .bd {
+    background: url(../img/1.png) no-repeat;
+    width: 18rem;
+    height: 13.8rem;
+    margin: 0 auto;
+    background-size: contain;
+    position: relative;
 }
 
+
+section .bd .bd-inner {
+    padding: 4.7rem .6rem 0;
+}
+.marquee {
+    height:6rem;
+    overflow: hidden;
+    position: relative;
+    margin: 0 .5rem;
+}
+.marquee-inner {
+    position: absolute;
+    top:0;
+    left: 0;
+}
+
+section .bd li {
+    line-height: 2rem;
+    color: #777;
+    font-size: 0.875rem;
+}
+section .bd li span {
+    color:red
+}
+
+section .bd .status{
+    position: absolute;
+    bottom: 0; 
+    left: 0;
+    font-size: 0.875rem;
+    width:100%;
+    text-align: center;
+}
+section.rule {
+    padding: 0 1.5rem;
+}
+section p {
+    font-size: .75rem;
+    margin-bottom: 1rem;
+    color: #959595;
+}
+
+.nodata {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 0.85rem;
+  text-align: center;
+  color:#999;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
+
+.title {
+    text-align: center;
+    font-size: 0.875rem;
+    position: absolute;
+    top:0;
+    left:0; width: 100%;
+    line-height: 2.8rem;
+}
+
+.marquee-inner ul {
+    -webkit-animation: marquees 5s linear infinite; 
+    animation: marquees 5s linear infinite;
+}
+@-webkit-keyframes marquees {
+    from {
+            -webkit-transform: translate3d(0, 0, 0);  
+            transform: translate3d(0, 0, 0); }
+    to   {  -webkit-transform: translate3d(0, 10rem, 0); 
+         transform: translate3d(0, 10rem, 0);} }
+@keyframes marquees {
+    from{
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);}
+    to {-webkit-transform: translate3d(0, 10rem, 0);
+        transform: translate3d(0, 10rem, 0);}}

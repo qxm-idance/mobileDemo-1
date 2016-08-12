@@ -1,47 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<link type="text/css" rel="stylesheet" href="style/main.css">
-	<!-- <meta name="flexible" content="initial-dpr=1,maximum-dpr=3" /> -->
-	<!-- <meta name="viewport" content="initial-dpr=1,maximum-dpr=3"/> -->
-	<script type="text/javascript" src="js/util/flexible.js"></script>
+	<meta charset="utf-8" />	
+	<!-- <link type="text/css" rel="stylesheet" href="style/main.css"> -->
+	<script type="text/javascript" src="js/util/jquery.js"></script>
+
 	<script type="text/javascript">
-		var dpr, rem, scale;
-		var docEl = document.documentElement;
-		var fontEl = document.createElement('style');
-		var metaEl = document.querySelector('meta[name="viewport"]');
+        ;(function(win) {
+            var docEl = document.documentElement;
+            var metaEl = document.querySelector('meta[name="viewport"]');
+            var fontEl = document.createElement('style'), dpr,scale,tid;
+            if (metaEl) {
+                var match = metaEl.getAttribute('content').match(/initial\-scale=(["']?)([\d\.]+)\1?/);
+                if (match) {
+                    scale = parseFloat(match[2]);
+                    dpr = 1 / scale;
+                }
+            }
+            if (!dpr && !scale) {
+                //非ios dpr 统一为1
+                var isAndroid = win.navigator.appVersion.match(/android/gi);
+                dpr = isAndroid ? 1 : win.devicePixelRatio || 1
+                // if (dpr > 2) dpr = 2;
+                scale = 1 / dpr;
+            }
+            // alert(scale);
+            docEl.setAttribute('data-dpr', dpr);
+            docEl.firstElementChild.appendChild(fontEl);
+            if (!metaEl) {
+                metaEl = document.createElement('meta');
+                metaEl.setAttribute('name', 'viewport');
+                var matches = navigator.userAgent.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i);
+                var UCversion = navigator.userAgent.match(/U3\/((\d+|\.){5,})/i);
 
-		dpr = window.devicePixelRatio || 1;
-		console.log(dpr);
-		console.log(docEl.clientWidth);
-		rem = docEl.clientWidth * dpr / 10;
-		scale = 1 / dpr;
+                if(!matches || matches && matches[1] > 534 || UCversion && parseInt(UCversion[1].split('.').join(''),10) >= 80) {
+                    metaEl.setAttribute('content', 'width=device-width,user-scalable=no,initial-scale=' + scale + ',maximum-scale=' + scale + ', minimum-scale=' + scale);
+                    if (docEl.firstElementChild) {
+                        docEl.firstElementChild.appendChild(metaEl);
+                    } else {
+                        var wrap = document.createElement('div');
+                        wrap.appendChild(metaEl);
+                        document.write(wrap.innerHTML);
+                    }
 
-
-		// 设置viewport，进行缩放，达到高清效果
-		metaEl.setAttribute('content', 'width=' + dpr * docEl.clientWidth + ',initial-scale=' + scale + ',maximum-scale=' + scale + ', minimum-scale=' + scale + ',user-scalable=no');
-
-		// 设置data-dpr属性，留作的css hack之用
-		docEl.setAttribute('data-dpr', dpr);
-
-		// 动态写入样式
-		docEl.firstElementChild.appendChild(fontEl);
-		fontEl.innerHTML = 'html{font-size:' + rem + 'px!important;}';
-
-		// 给js调用的，某一dpr下rem和px之间的转换函数
-		window.rem2px = function(v) {
-		    v = parseFloat(v);
-		    return v * rem;
-		};
-		window.px2rem = function(v) {
-		    v = parseFloat(v);
-		    return v / rem;
-		};
-
-		window.dpr = dpr;
-		window.rem = rem;
-	</script>
+                    if(docEl.clientWidth == 980 || docEl.clientWidth == 1024) {
+                        metaEl.setAttribute('content', 'target-densitydpi=device-dpi,width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1');
+                    }
+                } else {
+                    metaEl.setAttribute('content', 'width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1');
+                    if (docEl.firstElementChild) {
+                        docEl.firstElementChild.appendChild(metaEl);
+                    } else {
+                        var wrap2 = document.createElement('div');
+                        wrap2.appendChild(metaEl);
+                        document.write(wrap2.innerHTML);
+                    }
+                    dpr = 1;
+                }
+            }
+            function setUnitA(){
+                win.rem = 16 * dpr;
+                fontEl.innerHTML = 'html{font-size:' + win.rem + 'px!important;}';
+            }
+            win.dpr = dpr;
+            setUnitA();
+        })(window);
+    </script>
+    <!-- <script type="text/javascript">
+    	$(function(){ 
+		    var scrtime; 
+		    $("#con").hover(function(){ 
+		         clearInterval(scrtime);//停止滚动 
+		    },function(){ 
+		        scrtime = setInterval(function(){ 
+	                var ul = $("#con ul"); 
+	                var liHeight = ul.find("li:last").height();//计算最后一个li元素的高度 
+	                ul.animate({marginTop : liHeight+20 +"px"},1000,function(){ 
+	                    ul.find("li:last").prependTo(ul) 
+	                    ul.find("li:first").hide(); 
+	                    ul.css({marginTop:0}); 
+	                    ul.find("li:first").fadeIn(1000); 
+	                });         
+		        },3000); 
+		     }).trigger("mouseleave"); 
+		}); 
+    </script> -->
 </head>
 <body>
 	<div>
@@ -50,9 +93,36 @@
 		<section>
 			<header class="ui-center"><span>活动期间人品宝还款后将自动参与抽奖</span></header>
 			<div class="bd">
-				<p>中奖名单</p>
+				<p class="title">中奖名单</p>
+				<div class="bd-inner">
+	                <div class="marquee">
+	                    <div class="marquee-inner" id="con">
+	                        <ul>
+	                        	<li>张三：187 xxxx 7777   100</li>
+	                        	<li>李四：187 xxxx 9999   200</li>
+	                        	<li>王二：187 xxxx 6666   300</li>
+	                        	<li>王yi：187 xxxx 1111   300</li>
+	                        	<li>王er：187 xxxx 2222   300</li>
+	                        	<li>王sa：187 xxxx 5555   300</li>
+	                        	<li>王si：187 xxxx 4444   300</li>
+	                        </ul>
+	                    </div>
+	                    <!-- <span class="nodata">暂无中奖用户</span> -->
+	                </div>
+	                <p class="status">正在寻找下一位免单用户....</p>
+	            </div>
 			</div>
 		</section>
+		<section class="rule">
+	        <header class="ui-center"><span>活动规则</span></header>
+	        <p>1.活动时间：7月14号－7月20号；</p>
+	        <p>2.首次使用人品宝还信用卡可立减10元（该立减10元优惠即新人有礼10元还款金），选择人品宝还款系统将直接抵扣（仅支持邮箱或网银添加的信用卡）；</p>
+	        <p>3.每个用户仅限参与免单活动1次，以活动期间第一笔人品宝还款为准，系统将在所有参与用户（不含已中奖用户）中，每日随机抽取2位幸运用户；</p>
+	        <p>4.免单金额将在3个工作日内以还款金的形式发放，此还款金可与其他还款金叠加使用，下次信用卡还款直接抵扣；</p>
+	        <p>5.对通过不正当手段刷取奖品的用户，51信用卡管家有权取消其获奖资格；</p>
+	        <p>6.杭州恩牛网络技术有限公司拥有在法律允许范围内解释本活动的权利；</p>
+	        <p>7.本次活动由51信用卡管家提供，与设备生产商Apple Inc.公司无关。</p>
+	    </section>
 	</div>
 </body>
 </html>
