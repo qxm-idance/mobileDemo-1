@@ -2,9 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />	
-	<!-- <link type="text/css" rel="stylesheet" href="style/main.css"> -->
 	<script type="text/javascript" src="js/util/jquery.js"></script>
-
 	<script type="text/javascript">
         ;(function(win) {
             var docEl = document.documentElement;
@@ -87,7 +85,7 @@
     </script> -->
 </head>
 <body>
-	<div>
+	<div class="bk">
 		<p class="p-des t-center">用人品宝还款，首笔立减10元<br>还能抽取免单大奖哟</p>
 		<p class="p-des t-center"><button class="btn">马上还款</button></p>
 		<section>
@@ -97,19 +95,28 @@
 				<div class="bd-inner">
 	                <div class="marquee">
 	                    <div class="marquee-inner" id="con">
-	                        <ul>
-	                        	<li>张三：187 xxxx 7777   100</li>
+	                        <ol class="J-D fir">
+	                        	<!-- <li>张三：187 xxxx 7777   100</li>
 	                        	<li>李四：187 xxxx 9999   200</li>
 	                        	<li>王二：187 xxxx 6666   300</li>
 	                        	<li>王yi：187 xxxx 1111   300</li>
 	                        	<li>王er：187 xxxx 2222   300</li>
 	                        	<li>王sa：187 xxxx 5555   300</li>
-	                        	<li>王si：187 xxxx 4444   300</li>
-	                        </ul>
+	                        	<li>王si：187 xxxx 4444   300</li> -->
+	                        </ol>
+                            <ol class="J-D">
+                                <!-- <li>张三：187 xxxx 7777   100</li>
+                                <li>李四：187 xxxx 9999   200</li>
+                                <li>王二：187 xxxx 6666   300</li>
+                                <li>王yi：187 xxxx 1111   300</li>
+                                <li>王er：187 xxxx 2222   300</li>
+                                <li>王sa：187 xxxx 5555   300</li>
+                                <li>王si：187 xxxx 4444   300</li> -->
+                            </ol>
 	                    </div>
 	                    <!-- <span class="nodata">暂无中奖用户</span> -->
 	                </div>
-	                <p class="status">正在寻找下一位免单用户....</p>
+	                <p id="J-Status" class="status">正在寻找下一位免单用户....</p>
 	            </div>
 			</div>
 		</section>

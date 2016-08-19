@@ -54,6 +54,9 @@ input:password {
 :focus {
     outline: 0
 }
+
+/*以下很多样式 我都把多浏览器的版本取消了，因为到后面我用postcss + autoprefixer 处理了
+手动设置 页面的 rem */
 /*html {font-size: 16px !important}
 
 html {
@@ -65,6 +68,7 @@ html {
     }
 }
 */
+
 body{
     background: url(../img/0.png) no-repeat #fff;
     font-size: 0.875rem;
@@ -72,6 +76,8 @@ body{
     background-size:85% auto;
     background-position: center .8rem;
 }
+
+
 .t-center { text-align: center;}
 .p-des{
     margin-bottom: .8rem; 
@@ -92,7 +98,6 @@ body{
   width:100%;
   text-align: center;
   transform: translate(-50%, 0);
-  -webkit-transform: translate(-50%, 0);
 }
 section {
     position: relative;
@@ -181,7 +186,6 @@ section p {
   text-align: center;
   color:#999;
   transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
 }
 
 .title {
@@ -193,19 +197,13 @@ section p {
     line-height: 2.8rem;
 }
 
-.marquee-inner ul {
-    -webkit-animation: marquees 5s linear infinite; 
-    animation: marquees 5s linear infinite;
+/*.marquee-inner  {
+    animation: marquees 7s linear infinite;
 }
-@-webkit-keyframes marquees {
-    from {
-            -webkit-transform: translate3d(0, 0, 0);  
-            transform: translate3d(0, 0, 0); }
-    to   {  -webkit-transform: translate3d(0, 10rem, 0); 
-         transform: translate3d(0, 10rem, 0);} }
+
 @keyframes marquees {
     from{
-            -webkit-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0);}
-    to {-webkit-transform: translate3d(0, 10rem, 0);
-        transform: translate3d(0, 10rem, 0);}}
+    to {
+            transform: translate3d(0, 14rem, 0);}
+}*/
